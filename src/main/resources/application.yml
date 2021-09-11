@@ -1,0 +1,25 @@
+server:
+  port: 8080
+mpesa:
+  daraja:
+    consumer-key: iqG2aiygBRjPS5FBIXH1mux89oMQla1m
+    consumer-secret: QYQmmgkWjmdvARyg
+    grant-type: client_credentials
+    oauth-endpoint: :https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials
+
+spring:
+  jpa:
+    properties:
+       hibernate:
+         dialect: org.hibernate.dialect.PostgresSQLDialect
+         format_sql: true
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+#    platform: postgres
+    url: jdbc:postgresql://localhost:5432/mpesa_springboot
+    username: postgres
+    password: nelsonpassword
+#    driverClassName: org.postgresql.Driver
