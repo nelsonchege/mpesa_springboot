@@ -9,16 +9,20 @@ mpesa:
 
 spring:
   jpa:
+
     properties:
        hibernate:
-         dialect: org.hibernate.dialect.PostgresSQLDialect
+         dialect: org.hibernate.dialect.PostgreSQLDialect
          format_sql: true
+         jbdc:
+           lob:
+             non_contextual_creation: true
     database: POSTGRESQL
     show-sql: true
     hibernate:
       ddl-auto: create-drop
   datasource:
-#    platform: postgres
+    platform: postgres
     url: jdbc:postgresql://localhost:5432/mpesa_springboot
     username: postgres
     password: nelsonpassword
