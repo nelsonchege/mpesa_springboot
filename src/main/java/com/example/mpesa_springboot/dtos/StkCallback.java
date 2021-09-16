@@ -14,7 +14,9 @@ public class StkCallback{
 
     @JsonProperty("ResultDesc")
     private String resultDesc;
-
+    public String getResultDesc() {
+        return resultDesc;
+    };
     @JsonProperty("ResultCode")
     private int resultCode;
 

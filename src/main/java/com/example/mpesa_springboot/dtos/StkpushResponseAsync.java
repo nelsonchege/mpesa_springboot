@@ -6,6 +6,10 @@ import lombok.Data;
 @Data
 public class StkpushResponseAsync {
 
+
+
     @JsonProperty("Body")
     private Body body;
+
+
 }

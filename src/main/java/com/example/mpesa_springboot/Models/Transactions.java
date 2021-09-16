@@ -1,6 +1,9 @@
 package com.example.mpesa_springboot.Models;
 
+
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="transactions")
@@ -8,46 +11,82 @@ public class Transactions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String internalId;
 
-    @Column(name="name")
-    private String name ;
 
-    @Column(name="value")
-    private int value ;
+    @Column(name="resultDesc" ,unique = true)
+    private String resultDesc;
 
-    public Transactions(String name, int value) {
+    @Column(name="resultCode" ,unique = true)
+    private int resultCode;
+
+    @Column(name="name" ,unique = true)
+    private String name;
+
+    @Column(name="value" ,unique = true)
+    private String value;
+
+    public Transactions(String internalId,
+                        String resultDesc,
+                        int resultCode,
+                        String name,
+                        String value,
+                        String merchantRequestID) {
+        this.internalId = internalId;
+        this.resultDesc = resultDesc;
+        this.resultCode = resultCode;
         this.name = name;
         this.value = value;
+        this.merchantRequestID = merchantRequestID;
     }
 
-    public Transactions(){
-        super();
+    public String getInternalId() {
+        return internalId;
     }
 
-    public int getId() {
-        return id;
+    public String getResultDesc() {
+        return resultDesc;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public void setName(String name) {
-        this.name = name;
+    public void setResultDesc(String resultDesc) {
+        this.resultDesc = resultDesc;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public int getResultCode() {
+        return resultCode;
     }
 
+    public void setResultCode(int resultCode) {
+        this.resultCode = resultCode;
+    }
 
     public String getName() {
         return name;
     }
 
-    public int getValue() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getValue() {
         return value;
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
 
+    public String getMerchantRequestID() {
+        return merchantRequestID;
+    }
+
+    public void setMerchantRequestID(String merchantRequestID) {
+        this.merchantRequestID = merchantRequestID;
+    }
+
+    @Column(name="merchantRequestID" ,unique = true)
+    private String merchantRequestID;
+
+    public Transactions() {
+    }
 }

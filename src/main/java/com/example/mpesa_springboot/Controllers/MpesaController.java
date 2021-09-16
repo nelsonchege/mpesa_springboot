@@ -45,8 +45,20 @@ public class MpesaController {
     public ResponseEntity<AcknowledgeResponse> acknowledgeStkPushResponse(@RequestBody StkpushResponseAsync StkpushResponseAsync) {
         log.info("======= STK Push Async Response =====");
         log.info(objectMapper.writeValueAsString(StkpushResponseAsync));
+        StkpushResponseAsync stkpushResponseAsync = new StkpushResponseAsync();
+        Transactions transactions = new Transactions();
+
+        transactions.setResultDesc(stkpushResponseAsync.getResultDesc());
+        transactions.setResultCode(stkpushResponseAsync.getResultCode());
+        transactions.setMerchantRequestID(stkpushResponseAsync.getMerchantRequestID());
+        transactions.setName(stkpushResponseAsync.getName());
+        transactions.setValue(stkpushResponseAsync.getValue());
+
+        TransactionRepository.save(transactions);
+
         return ResponseEntity.ok(acknowledgeResponse);
     }
+
 
     @Autowired
     private TransactionRepository transactionRepository;
