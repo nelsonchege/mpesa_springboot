@@ -42,17 +42,19 @@ public class MpesaController {
 
     @SneakyThrows
     @PostMapping(path = "/stk-result", produces = "application/json")
-    public ResponseEntity<AcknowledgeResponse> acknowledgeStkPushResponse(@RequestBody StkpushResponseAsync StkpushResponseAsync) {
+    public ResponseEntity<AcknowledgeResponse> acknowledgeStkPushResponse(@RequestBody StkpushResponseAsync stkpushResponseAsync) {
         log.info("======= STK Push Async Response =====");
-        log.info(objectMapper.writeValueAsString(StkpushResponseAsync));
-        StkpushResponseAsync stkpushResponseAsync = new StkpushResponseAsync();
+        String ResponseJson = objectMapper.writeValueAsString(stkpushResponseAsync);
+        log.info(ResponseJson);
+
+        StkpushResponseAsync stkpushResponse =  stkpushResponseAsync;
         Transactions transactions = new Transactions();
 
-        transactions.setResultDesc(stkpushResponseAsync.getResultDesc());
-        transactions.setResultCode(stkpushResponseAsync.getResultCode());
-        transactions.setMerchantRequestID(stkpushResponseAsync.getMerchantRequestID());
-        transactions.setName(stkpushResponseAsync.getName());
-        transactions.setValue(stkpushResponseAsync.getValue());
+        transactions.setResultDesc(stkpushResponse.getResultDesc());
+        transactions.setResultCode(stkpushResponse.getResultCode());
+        transactions.setMerchantRequestID(stkpushResponse.getMerchantRequestID());
+        transactions.setName(stkpushResponse.getName());
+        transactions.setValue(stkpushResponse.getValue());
 
         TransactionRepository.save(transactions);
 
